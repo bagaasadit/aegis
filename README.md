@@ -1,0 +1,98 @@
+# 🛡️ AEGIS SYSTEM DEFENSE v2.0
+> **Hybrid App & Folder Protection with Dead Man's Switch Sentinel**  
+> *“The shield that never sleeps, the vault that never fails.”*
+
+[![Platform](https://img.shields.io/badge/Platform-Termux-orange.svg)](https://termux.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Root](https://img.shields.io/badge/Permission-Root%20Required-red.svg)](#)
+
+**AEGIS v2.0** is an advanced security utility for Termux designed to instantly hide applications and sensitive folders using low-level system manipulation. 
+
+The **Hybrid Edition** integrates Android package state control (`pm disable`) with stealthy filesystem masking, ensuring your private data remains invisible even if your device falls into the wrong hands.
+
+---
+
+## ✨ Key Features (v2.0 Hybrid)
+
+- **🛡️ Sentinel Monitoring 2.0**  
+  An intelligent background daemon that monitors the "heartbeat" of your Termux session.
+- **💀 Dead Man’s Switch**  
+  If Termux is closed, force-stopped, or the screen turns off → **INSTANT LOCKDOWN** is triggered automatically.
+- **📂 Hybrid Protection**  
+  Supports both App Hiding and Folder Locking (Gallery/Files) using stealthy `.nomedia` masking techniques.
+- **🚀 Turbo Caching & Resolver**  
+  Blazing fast app searching and listing powered by an `aapt` binary cache system.
+- **🔗 Intelligent CLI & Interactive Mode**  
+  Switch between a user-friendly interactive menu and efficient one-liner CLI commands.
+
+---
+
+## 🚦 Operational Logic
+
+| Mode | Sentinel Status | Effect |
+| :--- | :---: | :--- |
+| **Lockdown** (`st h`) | 🔴 OFF | All target apps and folders are completely hidden. |
+| **Unlock** (`st u`) | 🟢 ACTIVE | System is accessible but monitored. Closing Termux triggers auto-lock. |
+| **Free Roam** (`st free`) | ⚪ DISABLED | Protection disabled. Apps stay visible even after Termux is closed. |
+
+---
+
+## ⚠️ Prerequisites
+
+1. **Rooted Android Device** (Mandatory for system package manipulation).
+2. **Termux** (Latest version).
+3. **Termux:API** (Required for status notifications).
+
+---
+
+## 📥 Installation
+
+### Option 1: Quick Install
+Copy & paste into Termux:
+```bash
+curl -o $PREFIX/bin/st https://raw.githubusercontent.com/bagaasadit/aegis/main/st
+chmod +x $PREFIX/bin/st
+```
+
+### Option 2: Git Clone (Manual)
+```bash
+git clone https://github.com/bagaasadit/aegis.git
+cd aegis
+chmod +x aegis.sh
+mv aegis.sh $PREFIX/bin/st
+```
+
+---
+
+## 🎮 Command Guide
+
+| Command | Description |
+| :--- | :--- |
+| `st` or `st menu` | Launch the **Interactive Menu** (Recommended). |
+| `st u` | **Unlock:** Unhide all targets and activate Sentinel. |
+| `st h` | **Hide:** Manually trigger immediate lockdown. |
+| `st free` | **Permanent Show:** Unhide targets without Sentinel watch. |
+| `st search <key>` | Fast search and add apps by name. |
+| `st folder` | Open folder explorer to protect local directories. |
+| `st list` | View all currently protected apps and folders. |
+| `st status` | Check Sentinel health and protection statistics. |
+| `st refresh` | Rebuild the local application name database. |
+
+---
+
+## 🛠️ How the Sentinel Works
+
+The Aegis Sentinel runs as a background process. It is designed to trigger a **Lockdown** sequence if any of the following events are detected:
+1. **Screen Off:** User presses the power button or screen times out.
+2. **Session Kill:** Termux is swiped away from the "Recent Apps" list.
+3. **OOM Kill:** Android OS kills Termux to reclaim memory.
+4. **SSH Disconnect:** Remote session is terminated (if applicable).
+
+---
+
+## ⚠️ Disclaimer
+
+This tool modifies Android system package states. Use at your own risk. Always remember which applications or folders you have hidden before uninstalling the script or clearing Termux data.
+
+---
+**Developed with ❤️ for the Privacy Community.**
